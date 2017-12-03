@@ -17,9 +17,14 @@ with open('input.txt') as f:
             	polyShape.append(line)
 		sum = sum + (max(line) - min(line))
 
-		for x in line:
-			m = [line/x for x in line]
+# so how do I go through each number and work out the division?
 
+		for x in line:
+			for d in line:
+				if x%d == 0:
+					i = float(x)/float(d)
+					if (i != 1.0):
+						moduloSum = moduloSum + i
 
 f.close()
 
