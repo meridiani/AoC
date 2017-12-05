@@ -5,5 +5,10 @@
 ### Solution to Advent of Code day 
 ###
 
+
+f = open('input.txt','r')
+
+
+
 ###############################################################################
 print "OK to go!"
