@@ -14,7 +14,7 @@ f = open('input.txt')
 
 ### Convert the string to a float
 x = float(f.read())
-x = 21
+x = 30
 ### Close the input file
 f.close()
 
@@ -27,6 +27,7 @@ f.close()
 
 myArray = [1,1,2,4,5,10,11,23,25] # 3 by 3 square to seed it
 count = 9
+cornerArray = []
 
 while (count < x):
 	memSum = 0
@@ -47,25 +48,30 @@ while (count < x):
 	if ((m%2) == 0):
 		m = int(m + 1)
 
-	centre = (m/2) + 1
- 
 	# work out the corners, they are always the sum of two
  
 	l = m-1
 	m2 = m**2
 
+	n = m-2
+	n2 = (m-2)**2
+	p = n-1
+
 	corners = [m2, m2-l, m2-2*l, m2-3*l]
-	
+	last_corners = [n2, n2-p, n2-2*p, n2-3*p]
+
 	# find out what numbers we are dealing with
 
 	### need to work out how to deal with the 3x3 side numbers
-
+	
+	cEl = 0
 	for c in corners:
 		if (count == c):
 			elType = 'corner'
 			break
 		else:
 			elType = 'side'
+		cEl = cEl + 1
 
 ### now the hard part, the sum...
 ### for a corner the number is the one preceeding it and the one from the corner before
@@ -73,19 +79,27 @@ while (count < x):
 
 ### let's get the sum working first
 
+	### for side you want the last number plus three before it
+	### work out the offset from centre
+	### apply this to the row before
+	### add/subtract 1 for correct 3 elements
 
+	centre     = (m/2) + 1
+	old_centre = centre - 1
+	
+	offset = i - (corners[cEl-1] - (centre - 1))
 
+	print "centre is: ", centre, "aws: ", old_centre
+	
 	if (elType == 'corner'):
-		memSum = myArray[count-1] + 100
+		memSum = myArray[count-1] + myArray[last_corners[cEl]]
 	elif (elType == 'side'):
-		memSum = 351
+		memSum = myArray[count-1] + myArray[1] + myArray[1] + myArray[1]
 	else:
 		print "something has gone wrong"
 
 	myArray.append(memSum)
 
-	print count, elType, myArray[count], len(myArray)
-	
    	count = count + 1
 
 #print len(myArray),myArray
