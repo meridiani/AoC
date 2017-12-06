@@ -22,23 +22,24 @@ listLen = len(myList)
 
 x = 0
 
-while x < listLen:
+inside = True
 
-	x = myList[x]
+while (inside):
+	n = myList[x]
+	
+	myList[x] = n + 1
 
+	x = x + n
 
-	print x
+	steps = steps + 1	
 
-	sys.exit()
+	if (listLen > x):
+	
+		continue
 
-#x = myList[startHere]
-#change myList[startHere+1]
-#goto myList[x]
-
-#rinse and repeat
-
-###start at first elements, increment that by one and move to the next one
-
+	else:
+		inside = False
+	
 print "Steps taken to exit: ", steps
 
 ###############################################################################
