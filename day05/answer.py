@@ -14,6 +14,8 @@ for line in f:
 	myList.append(int(line))
 f.close() 
 
+myList = [0,3,0,1,-3]
+
 steps = 0
 
 ### We have the list of ints so now we need to move around
@@ -26,12 +28,18 @@ inside = True
 
 while (inside):
 	n = myList[x]
-	
-	myList[x] = n + 1
+	print (x-n), x, n
+
+	if (abs(n)>=3):
+		myList[x] = n - 1
+	else:
+		myList[x] = n + 1
 
 	x = x + n
 
 	steps = steps + 1	
+	
+	print "hello", myList
 
 	if (listLen > x):
 	
@@ -39,7 +47,8 @@ while (inside):
 
 	else:
 		inside = False
-	
+
+#print "Final list is: ", myList	
 print "Steps taken to exit: ", steps
 
 ###############################################################################
